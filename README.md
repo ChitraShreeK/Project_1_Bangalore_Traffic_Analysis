@@ -1,8 +1,9 @@
-# 🚦 Bengaluru Traffic Analysis Dashboard(2022 - 2024)
+# 🚦 Bengaluru Traffic Analysis Dashboard
 
 ## Project Overview
 
-An interactive data analysis & visualization project exploring traffic, average speed and congestion patterns in Bengaluru.  
+An interactive data analysis & visualization project exploring traffic, average speed and congestion patterns in Bengaluru. 
+ 
 This project identifies high-congestion hotspots, best-performing routes, and analyzes daily, weather-based, and monthly traffic trends using an interactive Streamlit dashboard provides a comprehensive look at traffic volume, average speeds, and congestion levels, with insights derived from a detailed analysis of traffic data from 2022 to 2024.
 
 The primary goal is to help users understand key factors influencing traffic, such as monthly, yearly and daily seasonal patterns, weather conditions, and the impact of public transport availability.
@@ -27,42 +28,49 @@ The primary goal is to help users understand key factors influencing traffic, su
 - **Congestion Patterns:** Identified bottleneck intersections.
 - **Comparative Insights:** Found top 3 most problematic and best performing traffic locations.
 
-Complete EDA is found here: [02_eda_analysis.ipynb](Notebooks/02_eda_analysis.ipynb02_eda_analysis.ipynb)
+Complete EDA is found here: [02_eda_analysis.ipynb](Notebooks\02_eda_analysis.ipynb02_eda_analysis.ipynb)
 
-The final dashboard is the culmination of a multi-step data analysis process:
+## Visualize Data
+```python
+most_problematic_locations = avg_speed_congestion_lvl.sort_values(
+  by = ["Congestion Level", "Average Speed"], 
+  ascending = [False, True]).head(3)
 
-1.  **Data Cleaning & Preprocessing:** The raw dataset was loaded and cleaned to ensure accuracy. This involved converting the 'Date' column to a proper datetime format, handling any potential missing values, and preparing the data for aggregation.
-2.  **Exploratory Data Analysis (EDA):** A thorough analysis was conducted to identify key traffic patterns. This included:
-    * Aggregating data to understand average traffic volume and speed by day of the week, weather condition, and public transport usage.
-    * Identifying the top roads with the highest traffic and congestion levels.
-    * Deriving key insights into how external factors impact traffic flow.
-3.  **Data Binning:** The 'Public Transport Usage' column was binned into categorical groups to simplify analysis and visualize its impact more clearly.
+print("Top 3 locations with High Traffic Volume, Low Average Speed and High Congestion Level:\n", most_problematic_locations)
+```
 
-## Key Features
+```python
+best_performing_locations = avg_speed_congestion_lvl.sort_values(
+  by = ["Average Speed", "Congestion Level"], 
+  ascending = [False, True]).head(3)
 
-The dashboard is organized into several tabs, each presenting a unique analytical insight with interactive elements.
+print("Top 3 locations with Low Traffic Volume, High Average Speed and Low Congestion Level:\n", best_performing_locations)
+```
+
+## Dashboard Features (Streamlit + Plotly)
+
+The dashboard is organized into 5 tabs, each presenting a unique analytical insight with interactive elements.
 
 * **Key Metrics:** A persistent header displays crucial overall metrics, including total traffic volume, average speed, and average congestion across all data.
-* **High & Low Traffic Locations:** An interactive bar chart allows users to view and compare the top roads with the highest traffic volume and congestion, with a slider to select the number of locations to display.
+* **High & Low Traffic Locations:** An interactive bar chart allows users to view and compare the top roads with the highest traffic volume and congestion, with a radio button to select the number of locations to display.
 * **Daily Traffic Volume:** Users can select a specific area and road to view daily traffic patterns, providing granular insights into localized traffic trends.
 * **Weather Impact:** This tab features interactive line charts that show how traffic volume and average speed are affected by different weather conditions (e.g., Clear, Rain, Fog). The charts allow for a direct comparison of patterns on different days.
 * **Public Transport Impact:** A bar chart visualizes the relationship between public transport usage and traffic metrics, helping to understand its role in managing traffic flow.
 * **Traffic Trends Over Time:** An interactive time-series analysis allows users to select a specific year and month to view daily traffic trends, revealing long-term patterns and seasonality.
 
-## Data Source
+## Streamlit Dashboard Images
 
-The analysis is based on a simulated dataset of Bengaluru traffic, containing over 26 million rows of data related to:
-* Road/Intersection Name
-* Date and Time
-* Traffic Volume
-* Average Speed (km/h)
-* Congestion Level
-* Weather Conditions
-* Public Transport Usage
+![Dashboard Main](Dashboard_Images\main_dashboard.png)
+
+![Dashboard Main](Dashboard_Images\high_traffic_volume.png)
+
+![Dashboard Main](Dashboard_Images\weather_Impct.png)
+
+![Dashboard Main](Dashboard_Images\monthly_yearly.png)
 
 ## Technical Stack
 
-* **Python:** The core programming language for the project.
+* **Python:** The core programming language for the project (Pandas, NumPy, Matplotlib, Seaborn).
 * **Streamlit:** Used to build the interactive web dashboard and create the user interface.
 * **Pandas:** Essential for data loading, cleaning, manipulation, and aggregation.
 * **Plotly Express:** Used for creating professional, interactive, and aesthetically pleasing data visualizations.
@@ -71,8 +79,7 @@ The analysis is based on a simulated dataset of Bengaluru traffic, containing ov
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/](https://github.com/)<Your GitHub Username>/<your-repo-name>.git
-    cd <your-repo-name>
+    git clone https://github.com/ChitraShreeK/Project_1_Bangalore_Traffic_Analysis
     ```
 2.  **Create a virtual environment (recommended):**
     ```bash
@@ -87,9 +94,3 @@ The analysis is based on a simulated dataset of Bengaluru traffic, containing ov
     ```bash
     streamlit run 03_streamlit_dashboard_app.py
     ```
-
-## Author
-
-* **<Your Name>**
-* **GitHub:** [github.com/<Your GitHub Username>](https://github.com/<Your GitHub Username>)
-* **LinkedIn:** [linkedin.com/in/<Your LinkedIn Profile>](https://www.linkedin.com/in/<Your LinkedIn Profile>)
