@@ -44,6 +44,8 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
                             "Monthly/Yearly Trends",
                           ])
 
+
+
 # this is for "High Traffic Volume"
 with tab1:
   st.subheader("High Traffic Volume Roads")
@@ -214,6 +216,8 @@ with tab4:
   else:
     fig = px.bar(avg_by_transport, x = "Public Transport Bins", y = "Average Speed", title = "Average Speed by Public Transport Usage")
     st.plotly_chart(fig, use_container_width = True)
+
+
 
 # this is for "Monthly/Yearly Trends"
 df['Date'] = pd.to_datetime(df['Date'])
