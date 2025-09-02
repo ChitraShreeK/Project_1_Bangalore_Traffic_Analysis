@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 import plotly.graph_objects as go
+import datetime
 
 @st.cache_data
 def load_data():
@@ -35,11 +36,12 @@ with col3:
   avg_congestion = int(df["Congestion Level"].mean())
   st.metric(label = "Average Congestion", value = f"{avg_congestion:,}%", border = True)
 
-tab1, tab2, tab3, tab4 = st.tabs([
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
                             "High Traffic Volume Roads",
                             "Daily Traffic Volume",
                             "Weather Impact",
                             "Public Transport Impact",
+                            "Monthly/Yearly Trends",
                           ])
 
 # this is for "High Traffic Volume"
@@ -169,7 +171,7 @@ with tab3:
                     x = "Day Name",
                     y = "Traffic Volume",
                     color = "Weather Conditions" if weather_radio == "All" else None,
-                    title = "Traffic Volume by Day")
+                    title = f"Traffic Volume on {weather_radio} Day")
       st.plotly_chart(fig1, use_container_width = True)
     
     with col2:
@@ -177,7 +179,7 @@ with tab3:
                     x = "Day Name",
                     y = "Average Speed",
                     color = "Weather Conditions" if weather_radio == "All" else None,
-                    title = "Average Speed by Day")
+                    title = f"Average Speed on {weather_radio} Day")
       st.plotly_chart(fig2, use_container_width = True)
 
 
@@ -212,3 +214,54 @@ with tab4:
   else:
     fig = px.bar(avg_by_transport, x = "Public Transport Bins", y = "Average Speed", title = "Average Speed by Public Transport Usage")
     st.plotly_chart(fig, use_container_width = True)
+
+# this is for "Monthly/Yearly Trends"
+df['Date'] = pd.to_datetime(df['Date'])
+df['Year'] = df['Date'].dt.year
+df['Month Number'] = df['Date'].dt.month
+df['Month Name'] = df['Date'].dt.month_name()
+
+with tab5:
+  st.subheader("Monthly and Yearly Traffic Trends")
+  years = df["Year"].unique()
+  # months = df["Month"].unique()
+
+  col_years, col_months = st.columns(2)
+
+  with col_years:
+    selected_year = st.selectbox(
+      "Select a year",
+      options = sorted(years),
+      index = None,
+      placeholder = "Select a Year"
+    )
+
+  with col_months:
+    if selected_year:
+      months_in_year = df[df['Year'] == selected_year]['Month Name'].unique()
+      selected_month = st.selectbox(
+        "Select a Month",
+        options = months_in_year,
+        index = None,
+        placeholder = "Select a Month"
+      )
+    else:
+      selected_month = None
+
+  if selected_year and selected_month:
+    filtered_year_month = df[(df["Year"] == selected_year) & (df["Month Name"] == selected_month)]
+    # monthly_avg = filtered_year_month.groupby("Month Name")["Traffic Volume"].mean().reset_index()
+    # monthly_avg_speed = filtered_year_month.groupby("Month Name")["Average Speed"].mean().reset_index()
+
+    if not filtered_year_month.empty:
+      fig = px.bar(filtered_year_month,
+                    x = "Date",
+                    y = "Traffic Volume",
+                    title = f"Traffic Volume in {selected_month} {selected_year}")
+      fig.update_xaxes(title_text = "Month")
+      fig.update_yaxes(title_text = "Traffic Volume")
+      st.plotly_chart(fig, use_container_width = True)
+    else:
+      st.info("No data available for the selected time period.")
+  else:
+    st.info("Please select a Year and a Month to view the trends.")
