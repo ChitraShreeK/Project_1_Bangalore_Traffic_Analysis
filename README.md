@@ -3,7 +3,7 @@
 ## Project Overview
 
 An interactive data analysis & visualization project exploring traffic, average speed and congestion patterns in Bengaluru. 
- 
+
 This project identifies high-congestion hotspots, best-performing routes, and analyzes daily, weather-based, and monthly traffic trends using an interactive Streamlit dashboard provides a comprehensive look at traffic volume, average speeds, and congestion levels, with insights derived from a detailed analysis of traffic data from 2022 to 2024.
 
 The primary goal is to help users understand key factors influencing traffic, such as monthly, yearly and daily seasonal patterns, weather conditions, and the impact of public transport availability.
@@ -28,7 +28,7 @@ The primary goal is to help users understand key factors influencing traffic, su
 - **Congestion Patterns:** Identified bottleneck intersections.
 - **Comparative Insights:** Found top 3 most problematic and best performing traffic locations.
 
-Complete EDA is found here: [02_eda_analysis.ipynb](Notebooks\02_eda_analysis.ipynb02_eda_analysis.ipynb)
+Complete EDA is found here: [02_eda_analysis.ipynb](Notebooks/02_eda_analysis.ipynb02_eda_analysis.ipynb)
 
 ## Visualize Data
 ```python
@@ -58,15 +58,17 @@ The dashboard is organized into 5 tabs, each presenting a unique analytical insi
 * **Public Transport Impact:** A bar chart visualizes the relationship between public transport usage and traffic metrics, helping to understand its role in managing traffic flow.
 * **Traffic Trends Over Time:** An interactive time-series analysis allows users to select a specific year and month to view daily traffic trends, revealing long-term patterns and seasonality.
 
+Complete dashboard building deatils is found here: [03_streamlit_dashboard_app.py](Notebooks/03_streamlit_dashboard_app.py)
+
 ## Streamlit Dashboard Images
 
-![Dashboard Main](Dashboard_Images\main_dashboard.png)
+![Dashboard Main](Dashboard_Images/main_dashboard.png)
 
-![Dashboard Main](Dashboard_Images\high_traffic_volume.png)
+![Dashboard Main](Dashboard_Images/high_traffic_volume.png)
 
-![Dashboard Main](Dashboard_Images\weather_Impct.png)
+![Dashboard Main](Dashboard_Images/weather_Impct.png)
 
-![Dashboard Main](Dashboard_Images\monthly_yearly.png)
+![Dashboard Main](Dashboard_Images/monthly_yearly.png)
 
 ## Technical Stack
 
