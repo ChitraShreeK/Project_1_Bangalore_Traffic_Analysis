@@ -28,7 +28,7 @@ The primary goal is to help users understand key factors influencing traffic, su
 - **Congestion Patterns:** Identified bottleneck intersections.
 - **Comparative Insights:** Found top 3 most problematic and best performing traffic locations.
 
-Complete EDA is found here: [02_eda_analysis.ipynb](Notebooks/02_eda_analysis.ipynb02_eda_analysis.ipynb)
+Complete EDA is found here: [02_eda_analysis.ipynb](Notebooks/02_eda_analysis.ipynb)
 
 ## Visualize Data
 ```python
