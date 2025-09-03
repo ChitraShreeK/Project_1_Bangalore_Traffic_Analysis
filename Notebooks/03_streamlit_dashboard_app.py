@@ -44,7 +44,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
                             "Monthly/Yearly Trends",
                           ])
 
-
+# TAB 1
 
 # this is for "High Traffic Volume"
 with tab1:
@@ -84,6 +84,7 @@ with tab1:
   fig = px.bar(plot_traffic_volume, x = "Road/Intersection Name", y = "Traffic Volume", color = "Congestion Level", title = f"{high_traffic_radio} roads with High Traffic Volume, Low Average Speed and High Congestion Level")
   st.plotly_chart(fig, use_container_width = True)
 
+# TAB 2
 
 # this for "Daily Traffic Volume"
 with tab2:
@@ -129,6 +130,7 @@ with tab2:
     else:
       st.info("👈 Please select the Area and Road/Intersection to view the daily traffic volume.")
 
+# TAB 3
 
 # this is for "Weather Impact"
 with tab3:
@@ -184,6 +186,7 @@ with tab3:
                     title = f"Average Speed on {weather_radio} Day")
       st.plotly_chart(fig2, use_container_width = True)
 
+# TAB 4
 
 # this is for "Public Transport Impact"
 with tab4:
@@ -217,7 +220,7 @@ with tab4:
     fig = px.bar(avg_by_transport, x = "Public Transport Bins", y = "Average Speed", title = "Average Speed by Public Transport Usage")
     st.plotly_chart(fig, use_container_width = True)
 
-
+# TAB 5
 
 # this is for "Monthly/Yearly Trends"
 df['Date'] = pd.to_datetime(df['Date'])

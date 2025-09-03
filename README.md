@@ -28,6 +28,8 @@ The primary goal is to help users understand key factors influencing traffic, su
 - **Congestion Patterns:** Identified bottleneck intersections.
 - **Comparative Insights:** Found top 3 most problematic and best performing traffic locations.
 
+Complete EDA is found here: [02_eda_analysis.ipynb](Notebooks/02_eda_analysis.ipynb02_eda_analysis.ipynb)
+
 ## Visualize Data
 ```python
 most_problematic_locations = avg_speed_congestion_lvl.sort_values(
@@ -55,6 +57,8 @@ The dashboard is organized into 5 tabs, each presenting a unique analytical insi
 * **Weather Impact:** This tab features interactive line charts that show how traffic volume and average speed are affected by different weather conditions (e.g., Clear, Rain, Fog). The charts allow for a direct comparison of patterns on different days.
 * **Public Transport Impact:** A bar chart visualizes the relationship between public transport usage and traffic metrics, helping to understand its role in managing traffic flow.
 * **Traffic Trends Over Time:** An interactive time-series analysis allows users to select a specific year and month to view daily traffic trends, revealing long-term patterns and seasonality.
+
+Complete dashboard is found here: [03_streamlit_dashboard_app.py](Notebooks/03_streamlit_dashboard_app.py)
 
 ## Streamlit Dashboard Images
 
